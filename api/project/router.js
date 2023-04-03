@@ -4,7 +4,8 @@ const projectModel = require('./model');
 
 router.get('/', async (req,res,next)=>{
     try {
-        res.json('Project')
+        projects = await projectModel.getAllProject()
+        res.json(projects)
     } catch (error) {
         next(error)
     }
