@@ -4,7 +4,17 @@ const resourceModel = require('./model');
 
 router.get('/', async (req,res,next)=>{
     try {
-        res.json('Resource')
+        const resources = await resourceModel.getAllResources();
+        res.json(resources)
+    } catch (error) {
+        next(error)
+    }
+});
+
+router.post('/', async (req,res,next)=>{
+    try {
+        newResource = await resourceModel.createNewResource(req.body);
+        res.json(newResource)
     } catch (error) {
         next(error)
     }

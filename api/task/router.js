@@ -4,7 +4,17 @@ const taskModel = require('./model');
 
 router.get('/', async (req,res,next)=>{
     try {
-        res.json('Task')
+        const tasks = await taskModel.getAllTask();
+        res.json(tasks)
+    } catch (error) {
+        next(error)
+    }
+});
+
+router.post('/', async (req,res,next)=>{
+    try {
+        newTask = await taskModel.createNewTask(req.body);
+        res.json(newTask)
     } catch (error) {
         next(error)
     }
